@@ -25,6 +25,35 @@ pip install pandas
 
 OBS: Se você for usar o Google Colab, não é necessário instalar as bibliotecas, pois elas já estão disponíveis.
 
+# Estrutura do Código 
+
+Bibliotecas:
+
+1. Import files: Específico para ambientes do Google Colab e permite que você faça upload de arquivos para seu notebook.
+2. Import io: Fornece ferramentas para trabalhar com fluxos de entrada e saída.io
+3. Uploaded: Permite selecionar os arquivos do Excel com os quais deseja trabalhar.
+4. Import Pandas as pd: Biblioteca para manipulação e análise de dados, principalmente com dados tabulares, como planilhas do Excel.
+
+Funcionamento do codigo:
+
+1. Carrega as bibliotecas necessarias para realizar as operações. O codigo usa biblioteca pandas para manipulação de dados e files para upload de arquivos no ambiente colab.
+
+2. O codigo solicita o upload de dois arquivos excel, as planilhas atualizadas e não atualizadas.
+
+3. É asuumido que a coluna "NomeUnidade" é a chave comum entre as duas planilhas, ou seja, essa coluna sera usada para comparar os dois arquivos.
+
+4. É utilizado o metodo pd.merge para mesclar as duas planilhas com base na coluna comum.
+
+5. A opção how="left" indica que a mesclagem será feita de forma que todos os dados da planilha desatualizada sejam mantidos e os dados da planilha atualizada serão adicionados onde houver correspondencia na coluna comum.
+
+6. Já o indicator=True adiciona uma coluna extra chamada "_merge" que informa se uma linha esta presente em ambas as planilhas ou apenas em uma delas.
+
+7. Após a mesclagem, o codigo filtra as linhas onde a coluna "_merge" tem o valor "left_only". Essas linhas representam entradas que estão apenas em uma planilha desatualizada.
+
+8. A coluna "_merge" é removida, já que não mais necessaria apos a filtragem.
+
+9. O codigo imprime as primeiras linhas do dataframe resultante, mostrando as entradas que não foram atualizadas.
+
 # Como usar
 
 Faça o upload das duas planilhas (desatualizada e atualizada) para o ambiente.
